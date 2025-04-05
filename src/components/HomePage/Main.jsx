@@ -76,7 +76,7 @@ function Main({ cc, cn, sec, date,dep,sem,day,time, isRunning, setIsRunning, num
         const times = `${hours}:${minutes}:${seconds}`;
     
         try {
-            const response = await fetch(`/setData/setTime`, {
+            const response = await fetch(`https://mini-project-ii-ypu6.onrender.com/setData/setTime`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
