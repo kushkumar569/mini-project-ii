@@ -29,7 +29,7 @@ function Login() {
                     navigate(`/${data.user.role.toLowerCase()}`);
                 }
             })
-            .catch((error) => console.error("Auto-login failed:", error));
+            .catch((error) => console.error("Auto-login failed:-", error));
 
         // console.log(import.meta.env.VITE_BACKEND_URL); // Moved outside to avoid execution issues
     }, [navigate]);
