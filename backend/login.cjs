@@ -65,7 +65,7 @@ const authenticateUser = (req, res, next) => {
 
     // ✅ Extract token from Authorization header
     const authHeader = req.headers.authorization;
-    console.log(authHeader);
+    console.log("fromsuth",authHeader);
     
     if (!authHeader || !authHeader.startsWith("Bearer ")) {
         return res.status(401).json({ message: "Unauthorized, please login" });
