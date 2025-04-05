@@ -8,7 +8,7 @@ function PrivateRoute({ allowedRoles }) {
     const token = localStorage.getItem("token");
 
     useEffect(() => {
-        fetch(`${process.env.BACKEND_URL}/me`, {
+        fetch(`https://mini-project-ii-ypu6.onrender.com/me`, {
             method: "GET",
             credentials: "include", // Ensures cookies are sent
             headers: {
