@@ -29,10 +29,7 @@ function View() {
             window.removeEventListener("popstate", handlePopState);
         };
     }, []);
-    
-    
-    
-    
+      
 
     useEffect(() => {
         const fetchClasses = async () => {

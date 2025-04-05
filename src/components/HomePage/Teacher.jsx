@@ -332,7 +332,7 @@ function Extra({ course, setShowMain, setSelectedCourse }) {
 
 function Time({ cc, cn, sec, date, dep, sem, day, time, isRunning, setIsRunning, setShowMain, setView, numbers }) {
     const navigate = useNavigate();
-    const [timee, setTimee] = useState(1 * 10);
+    const [timee, setTimee] = useState(5 * 60);
     const [hasRun, setHasRun] = useState(false);
     const setids = useSetRecoilState(Ids);
     const setdate = useSetRecoilState(DateAtom);
