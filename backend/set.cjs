@@ -111,7 +111,9 @@ SetData.put("/setStudentAttendence", async (req, res) => {
     console.log(courseCode, courseName, section, Date, department, semester, Day, Time, roll);
     try {
         // console.log(courseCode, courseName, section, Date, department, semester, Day, Time, atted);
-
+        if(roll==null){
+            return res.status(404).json({messgae: "Student Not Found"})
+        }
         let Details;
             // Try inserting into Detail (skips if duplicate)
             Details = await detail.findOne({ semester, department, section, courseCode, courseName });
