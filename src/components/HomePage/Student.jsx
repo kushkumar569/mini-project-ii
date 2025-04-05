@@ -370,7 +370,7 @@ function Main({ latTeacher, lonTeacher, live, email, classes, setView }) {
                 <div className="absolute top-1 left-2 flex items-center space-x-1">
                     <img src="/logo.png" alt="Logo" className="w-14 h-14" />
                     <span className="text-gray-500 text-lg font-semibold">
-                        Gseo-Fencing Attendance Manager
+                        Geo-Fencing Attendance Manager
                     </span>
                 </div>
                 <div className="mt-8 text-center">
@@ -379,7 +379,7 @@ function Main({ latTeacher, lonTeacher, live, email, classes, setView }) {
                         underRange && live ? (
                             mark ? <View marks={mark} /> : <Btn setMark={setMark} email={email} classes={classes} setView={setView} lat={lat} lon={lon} distance={distance} />
                         ) : (
-                            <Error msg={message} live={live} />
+                            <Error msg={message} live={live} distance={distance}/>
                         )
                     ) : (
                         <p>Loading...</p>
@@ -420,13 +420,14 @@ function Btn({ setMark, email, classes, setView, lat, lon, distance }) {
 }
 
 
-function Error({ msg, live }) {
+function Error({ msg, live,distance}) {
     const navigate = useNavigate();
     function view() {
         navigate("/view")
     }
     return (
         <span className="text-red-600 font-semibold">
+            {msg=="Out of Range" ? ` Distance from Teacher:- ${distance}` : null}
             {live ? msg : "No Classes"}<br />
             <button className="bg-green-600 hover:bg-orange-400 active:bg-orange-400 text-white py-2 px-6 rounded-md font-semibold mb-4 w-full mt-16" onClick={view}>
                 View Attendece
