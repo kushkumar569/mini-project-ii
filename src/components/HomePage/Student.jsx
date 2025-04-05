@@ -427,10 +427,10 @@ function Error({ msg, live,distance}) {
     }
     return (
         <span className="text-red-600 font-semibold">
-            {msg=="Out of Range" ? ` Distance from Teacher:- ${distance}` : null}
+            {msg=="Out of Range" && live ? ` Distance from Teacher:- ${distance}` : null}<br/>
             {live ? msg : "No Classes"}<br />
             <button className="bg-green-600 hover:bg-orange-400 active:bg-orange-400 text-white py-2 px-6 rounded-md font-semibold mb-4 w-full mt-16" onClick={view}>
-                View Attendece
+                View Attendence
             </button>
         </span>
     );
