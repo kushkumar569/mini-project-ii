@@ -76,6 +76,8 @@ function Main({ cc, cn, sec, date,dep,sem,day,time, isRunning, setIsRunning, num
         const times = `${hours}:${minutes}:${seconds}`;
     
         try {
+            console.log("Updating Time...:- ",latitude,longitude,liveStatus,times);
+            
             const response = await fetch(`https://mini-project-ii-ypu6.onrender.com/setData/setTime`, {
                 method: "PUT",
                 headers: {
