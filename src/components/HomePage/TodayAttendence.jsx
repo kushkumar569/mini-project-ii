@@ -32,7 +32,7 @@ function TodayAttendance() {
     useEffect(() => {
         const fetchClasses = async () => {
             try {
-                const response = await fetch(`${proces.env.BACKEND_URL}/get/TodayAttendence`, {
+                const response = await fetch(`${process.env.BACKEND_URL}/get/TodayAttendence`, {
                     method: "POST",
                     credentials: "include",
                     headers: {

@@ -5,7 +5,7 @@ function Logout() {
 
     async function logout() {
         try {
-            const response = await fetch(`${proces.env.BACKEND_URL}/logout`, {
+            const response = await fetch(`${process.env.BACKEND_URL}/logout`, {
                 method: "POST",
                 credentials: "include", // Ensures cookies are included in the request
             });

@@ -26,7 +26,7 @@ function Teacher() {
         const fetchEmail = async () => {
             try {
                 const token = localStorage.getItem("token");
-                const response = await fetch(`${proces.env.BACKEND_URL}/me`, {
+                const response = await fetch(`${process.env.BACKEND_URL}/me`, {
                     method: "GET",
                     credentials: "include",
                     headers: {
@@ -58,7 +58,7 @@ function Teacher() {
             try {
                 console.log(email, "Fetching class data...");
 
-                const response = await fetch(`${proces.env.BACKEND_URL}/class/data`, {
+                const response = await fetch(`${process.env.BACKEND_URL}/class/data`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
@@ -80,7 +80,7 @@ function Teacher() {
                     const use = data.matchedClasses[0];
                     const set = async () => {
                         try {
-                            const response = await fetch(`${proces.env.BACKEND_URL}/setData/set`, {
+                            const response = await fetch(`${process.env.BACKEND_URL}/setData/set`, {
                                 method: "PUT",
                                 headers: {
                                     "Content-Type": "application/json",  // Fix: Add headers
@@ -183,7 +183,7 @@ function NoClass({ msg, setShowMain, setSelectedCourse, email }) {
     const [classes, setClasses] = useState([]); // Store fetched classes
     async function FindClass() {
         try {
-            const response = await fetch(`${proces.env.BACKEND_URL}/class/extra`, {
+            const response = await fetch(`${process.env.BACKEND_URL}/class/extra`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -259,7 +259,7 @@ function Extra({ course, setShowMain, setSelectedCourse }) {
 
         const set = async () => {
             try {
-                const response = await fetch(`${proces.env.BACKEND_URL}/setData/set`, {
+                const response = await fetch(`${process.env.BACKEND_URL}/setData/set`, {
                     method: "PUT",
                     headers: {
                         "Content-Type": "application/json",  // Fix: Add headers
@@ -341,7 +341,7 @@ function Time({ cc, cn, sec, date, dep, sem, day, time, isRunning, setIsRunning,
 
     const set = async () => {
         try {
-            const response = await fetch(`${proces.env.BACKEND_URL}/setData/set`, {
+            const response = await fetch(`${process.env.BACKEND_URL}/setData/set`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",  // Fix: Add headers
@@ -374,7 +374,7 @@ function Time({ cc, cn, sec, date, dep, sem, day, time, isRunning, setIsRunning,
 
     async function setTime() {
         try {
-            const response = await fetch(`${proces.env.BACKEND_URL}/setData/setTime`, {
+            const response = await fetch(`${process.env.BACKEND_URL}/setData/setTime`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
@@ -405,7 +405,7 @@ function Time({ cc, cn, sec, date, dep, sem, day, time, isRunning, setIsRunning,
 
     async function setAttendence() {
         try {
-            const response = await fetch(`${proces.env.BACKEND_URL}/setData/setAttendence`, {
+            const response = await fetch(`${process.env.BACKEND_URL}/setData/setAttendence`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",

@@ -12,7 +12,7 @@ function Login() {
         const token = localStorage.getItem("token");
         console.log(token);
         
-        fetch(`${proces.env.BACKEND_URL}/me`, {
+        fetch(`${process.env.BACKEND_URL}/me`, {
             method: "GET",
             credentials: "include", // Ensures cookies are sent
             headers: {
@@ -36,7 +36,7 @@ function Login() {
 
     async function loginReq() {
         try {
-            const response = await fetch(`${proces.env.BACKEND_URL}/login`, {
+            const response = await fetch(`${process.env.BACKEND_URL}/login`, {
                 method: "POST",
                 credentials: "include", // Ensures cookies are stored
                 headers: { "Content-Type": "application/json" },

@@ -37,7 +37,7 @@ function View() {
     useEffect(() => {
         const fetchClasses = async () => {
             try {
-                const response = await fetch(`${proces.env.BACKEND_URL}/get/AllClassDetail`, {
+                const response = await fetch(`${process.env.BACKEND_URL}/get/AllClassDetail`, {
                     method: "GET",
                     credentials: "include",
                     headers: {
@@ -72,7 +72,7 @@ function View() {
 
         setSelectedClass(classId);
         try {
-            const response = await fetch(`${proces.env.BACKEND_URL}/get/GetAttendence`, {
+            const response = await fetch(`${process.env.BACKEND_URL}/get/GetAttendence`, {
                 method: "POST",
                 credentials: "include",
                 headers: {

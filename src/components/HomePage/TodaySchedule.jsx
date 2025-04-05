@@ -10,7 +10,7 @@ function TodaySchedule() {
     useEffect(() => {
         const fetchClasses = async () => {
             try {
-                const response = await fetch(`${proces.env.BACKEND_URL}/get/TodaySchedule`, {
+                const response = await fetch(`${process.env.BACKEND_URL}/get/TodaySchedule`, {
                     method: "POST",
                     credentials: "include",
                     headers: {

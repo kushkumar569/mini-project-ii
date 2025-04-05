@@ -20,7 +20,7 @@ function Student() {
             try {
                 // Fetch user data
                 const token = localStorage.getItem("token");
-                const userResponse = await fetch(`${proces.env.BACKEND_URL}/me`, {
+                const userResponse = await fetch(`${process.env.BACKEND_URL}/me`, {
                     method: "GET",
                     credentials: "include",
                     headers: {
@@ -37,7 +37,7 @@ function Student() {
                 }
 
                 // Fetch status data
-                const statusResponse = await fetch(`${proces.env.BACKEND_URL}/get/status`, {
+                const statusResponse = await fetch(`${process.env.BACKEND_URL}/get/status`, {
                     method: "POST",
                     credentials: "include",
                     headers: {
@@ -59,7 +59,7 @@ function Student() {
 
                 console.log(statusInfo.data.isLive, statusInfo.data.TeacherLatitude, statusInfo.data.TeacherLongitude, statusInfo.data.time);
 
-                const response = await fetch(`${proces.env.BACKEND_URL}/get/class`, {
+                const response = await fetch(`${process.env.BACKEND_URL}/get/class`, {
                     method: "POST",
                     credentials: "include",
                     headers: {
@@ -149,7 +149,7 @@ function Timer({ time, live, email, classes }) {
 
     async function setAttendence() {
         try {
-            const response = await fetch(`${proces.env.BACKEND_URL}/setData/setStudentAttendence`, {
+            const response = await fetch(`${process.env.BACKEND_URL}/setData/setStudentAttendence`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
