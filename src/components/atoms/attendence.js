@@ -19,3 +19,9 @@ export const Day = atom({
     key: "Day",
     default: null
 })
+
+export const roll = atom({
+    key: "roll",
+    default: null
+})
+

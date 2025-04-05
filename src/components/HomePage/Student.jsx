@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import showToast from "./alert";
 import Logout from "../Login/Logout";
 import { useNavigate } from "react-router-dom";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { roll } from "../atoms/attendence";
 
 function Student() {
     const [email, setEmail] = useState(null);
@@ -117,8 +119,8 @@ function Student() {
 function Timer({ time, live, email, classes }) {
     const navigate = useNavigate();
     const [difference, setDifference] = useState(0);
-    const [timee, setTimee] = useState(300); // Default 5 min countdown
-    const roll = parseInt(email.substring(6, 8))
+    const [timee, setTimee] = useState(120); // Default 5 min countdown
+    const rol = useRecoilValue(roll);
     // console.log(roll);
 
     // Calculate absolute time difference
@@ -140,7 +142,7 @@ function Timer({ time, live, email, classes }) {
 
         const diff = getAbsoluteTimeDifferenceInSeconds(currentTime, time);
         setDifference(diff);
-        setTimee(300 - diff); // Start with (5 min - difference)
+        setTimee(120 - diff); // Start with (5 min - difference)
     }, [time]);
 
     function sleep(ms) {
@@ -163,7 +165,7 @@ function Timer({ time, live, email, classes }) {
                     Day: classes.day,
                     Date: classes.date,
                     Time: classes.time,
-                    roll: roll
+                    roll: rol
                 })
             });
 
@@ -393,9 +395,12 @@ function Main({ latTeacher, lonTeacher, live, email, classes, setView }) {
 function Btn({ setMark, email, classes, setView, lat, lon, distance }) {
     const navigate = useNavigate();
     console.log(lat, lon, distance);
-
+    const setRoll = useSetRecoilState(roll);
+    
     async function marks() {
         showToast(`Mark Attendance Successful ${email}`);
+        const rol = parseInt(email.substring(6, 8))
+        setRoll(rol)
         setMark(true);
         setView(true)
     }
@@ -430,7 +435,7 @@ function Error({ msg, live,distance}) {
             {msg=="Out of Range" && live ? ` Distance from Teacher:- ${distance}` : null}<br/>
             {live ? msg : "No Classes"}<br />
             <button className="bg-green-600 hover:bg-orange-400 active:bg-orange-400 text-white py-2 px-6 rounded-md font-semibold mb-4 w-full mt-16" onClick={view}>
-                View Attendence
+                View Attendences
             </button>
         </span>
     );
