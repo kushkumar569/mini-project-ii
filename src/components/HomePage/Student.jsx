@@ -261,7 +261,7 @@ function Main({ latTeacher, lonTeacher, live, email, classes, setView }) {
             
                 if (dis <= 10) {
                     setUnderRange(true);
-                    setMessage("Inside Range - Present");
+                    setMessage("Inside Range- Present");
                 } else {
                     setUnderRange(false);
                     setMessage("Out of Range");
