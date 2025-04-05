@@ -18,6 +18,7 @@ app.use(express.json());
 const corsOptions = {
     origin: [
       `${process.env.FRONTEND_URL}`,
+      "https://mini-project-ii-zeta.vercel.app"
     ],
     credentials: true
   };
