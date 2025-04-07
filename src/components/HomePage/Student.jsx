@@ -119,7 +119,7 @@ function Student() {
 function Timer({ time, live, email, classes }) {
     const navigate = useNavigate();
     const [difference, setDifference] = useState(0);
-    const [timee, setTimee] = useState(120); // Default 5 min countdown
+    const [timee, setTimee] = useState(125); // Default 5 min countdown
     const rol = useRecoilValue(roll);
     console.log("roll is",rol);
 
@@ -142,7 +142,7 @@ function Timer({ time, live, email, classes }) {
 
         const diff = getAbsoluteTimeDifferenceInSeconds(currentTime, time);
         setDifference(diff);
-        setTimee(120 - diff); // Start with (5 min - difference)
+        setTimee(125 - diff); // Start with (5 min - difference)
     }, [time]);
 
     function sleep(ms) {
