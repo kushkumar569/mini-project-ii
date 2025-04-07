@@ -119,7 +119,7 @@ function Student() {
 function Timer({ time, live, email, classes }) {
     const navigate = useNavigate();
     const [difference, setDifference] = useState(0);
-    const [timee, setTimee] = useState(64); // Default 5 min countdown
+    const [timee, setTimee] = useState(62); // Default 5 min countdown
     const rol = useRecoilValue(roll);
     console.log("roll is",rol);
 
@@ -142,7 +142,7 @@ function Timer({ time, live, email, classes }) {
 
         const diff = getAbsoluteTimeDifferenceInSeconds(currentTime, time);
         setDifference(diff);
-        setTimee(64 - diff); // Start with (5 min - difference)
+        setTimee(62 - diff); // Start with (5 min - difference)
     }, [time]);
 
     function sleep(ms) {
@@ -150,7 +150,7 @@ function Timer({ time, live, email, classes }) {
     }
 
     async function setAttendence() {
-        console.log("time over from setAttendence after 4 sec.");
+        console.log("time over from setAttendence after 2 sec.");
         
         try {
             const response = await fetch(`https://mini-project-ii-ypu6.onrender.com/setData/setStudentAttendence`, {
@@ -202,7 +202,7 @@ function Timer({ time, live, email, classes }) {
                         setTimeout(async () => {
                             showToast("Time Over");
                             await setAttendence(); // ✅ Call your function after delay
-                        }, 4000);
+                        }, 3000);
                         return 0;
                     }
                     return prevTime - 1;
@@ -265,7 +265,7 @@ function Main({ latTeacher, lonTeacher, live, email, classes, setView }) {
                 const dis = await vincenty(latTeacher, lonTeacher, latNow, lonNow);
                 setDistance(dis);
             
-                if (dis <= 1000) {
+                if (dis <= 500) {
                     setUnderRange(true);
                     setMessage("Inside Range- Present");
                 } else {
