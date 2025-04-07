@@ -89,8 +89,8 @@ function Login() {
                     </div>
 
                     <div className="w-1/2 flex flex-col justify-center items-start px-12 text-black">
-                        <h2 className="text-3xl font-bold mb-6">Welcome Back</h2>
-                        <p className="text-gray-500 font-semibold mb-6">Please Login to continue</p>
+                        <h2 className="text-3xl font-bold mb-6">Welcome Back..</h2>
+                        <p className="text-gray-500 font-semibold mb-6">Please Log-in to continue</p>
 
                         <input
                             type="email"
