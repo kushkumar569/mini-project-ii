@@ -332,7 +332,7 @@ function Extra({ course, setShowMain, setSelectedCourse }) {
 
 function Time({ cc, cn, sec, date, dep, sem, day, time, isRunning, setIsRunning, setShowMain, setView, numbers }) {
     const navigate = useNavigate();
-    const [timee, setTimee] = useState(2 * 60);
+    const [timee, setTimee] = useState(1 * 60);
     const [hasRun, setHasRun] = useState(false);
     const setids = useSetRecoilState(Ids);
     const setdate = useSetRecoilState(DateAtom);
@@ -427,7 +427,7 @@ function Time({ cc, cn, sec, date, dep, sem, day, time, isRunning, setIsRunning,
 
             if (response.ok) {
                 const data = await response.json();
-                console.log("Updated Time:", data);
+                console.log("put attendence", data);
                 setids(cc);
                 settime(time);
                 setdate(date);
@@ -448,14 +448,27 @@ function Time({ cc, cn, sec, date, dep, sem, day, time, isRunning, setIsRunning,
         setHasRun(true);
 
         const handleTimeout = async () => {
-            await set(); // Call your set function
-            await setTime(); // Call setTime
             await setAttendence(); // Call attendance update
-            await new Promise(resolve => setTimeout(resolve, 6000)); // Wait for 5 seconds
+            console.log("setAttendence function called");
 
-            setIsRunning(false);
-            setShowMain(false);
-            setView(true);
+            await set(); // Call your set function
+            console.log("set function called");
+            
+            await setTime(); // Call setTime
+            console.log("setTime function called");
+            
+            await new Promise(resolve => setTimeout(resolve, 7000)); // Wait for 5 seconds
+            console.log("7 seconds passed");
+            
+            await setIsRunning(false);
+            console.log("isRunning set to false");
+            
+            await setShowMain(false);
+            console.log("showMain set to false");
+            
+            await setView(true);
+            console.log("view set to true");
+            
             navigate('/TodayAttendence', { replace: true });
         };
 

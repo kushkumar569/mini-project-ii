@@ -11,7 +11,8 @@ function TodayAttendance() {
     const [todayAttnd, setTodayAttnd] = useState(null);
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
-
+    console.log("Today's Attendance Component Rendered");
+    
     useEffect(() => {
         const handlePopState = () => {
             window.history.pushState(null, "", window.location.href);

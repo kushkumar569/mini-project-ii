@@ -119,7 +119,7 @@ function Student() {
 function Timer({ time, live, email, classes }) {
     const navigate = useNavigate();
     const [difference, setDifference] = useState(0);
-    const [timee, setTimee] = useState(122); // Default 5 min countdown
+    const [timee, setTimee] = useState(64); // Default 5 min countdown
     const rol = useRecoilValue(roll);
     console.log("roll is",rol);
 
@@ -142,7 +142,7 @@ function Timer({ time, live, email, classes }) {
 
         const diff = getAbsoluteTimeDifferenceInSeconds(currentTime, time);
         setDifference(diff);
-        setTimee(122 - diff); // Start with (5 min - difference)
+        setTimee(64 - diff); // Start with (5 min - difference)
     }, [time]);
 
     function sleep(ms) {
@@ -150,6 +150,8 @@ function Timer({ time, live, email, classes }) {
     }
 
     async function setAttendence() {
+        console.log("time over from setAttendence after 4 sec.");
+        
         try {
             const response = await fetch(`https://mini-project-ii-ypu6.onrender.com/setData/setStudentAttendence`, {
                 method: "PUT",
@@ -195,10 +197,12 @@ function Timer({ time, live, email, classes }) {
                     if (prevTime <= 1) {
                         clearInterval(timer); // stop the countdown    
                         // ⏳ Wait 2 seconds, then call setAttendence
+                        console.log("time over....");
+                        
                         setTimeout(async () => {
                             showToast("Time Over");
                             await setAttendence(); // ✅ Call your function after delay
-                        }, 2000);   
+                        }, 4000);
                         return 0;
                     }
                     return prevTime - 1;
