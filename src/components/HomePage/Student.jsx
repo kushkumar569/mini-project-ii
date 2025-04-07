@@ -400,7 +400,7 @@ function Btn({ setMark, email, classes, setView, lat, lon, distance }) {
     async function marks() {
         showToast(`Mark Attendance Successful ${email}`);
         const rol = parseInt(email.substring(6, 8))
-        setRoll(rol)
+        await setRoll(rol);
         setMark(true);
         setView(true)
     }

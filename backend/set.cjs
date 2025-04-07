@@ -122,7 +122,7 @@ SetData.put("/setStudentAttendence", async (req, res) => {
             }
 
             const ids = Details._id;
-            console.log(ids,Date,Time,Day);
+            console.log("details",ids,Date,Time,Day);
             
             const setAttend = await Attendence.findOneAndUpdate(
                 { ids,Date,Day,Time },
