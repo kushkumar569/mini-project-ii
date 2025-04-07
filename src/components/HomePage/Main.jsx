@@ -117,8 +117,8 @@ function Main({ cc, cn, sec, date,dep,sem,day,time, isRunning, setIsRunning, num
     
             if (locationData) {
                 if (!isRunning) {
+                    await setIsRunning(true);
                     await setTime(locationData.latitude, locationData.longitude, locationData.live);
-                    setIsRunning(true);
                 }
             } else {
                 window.location.reload();

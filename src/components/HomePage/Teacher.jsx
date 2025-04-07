@@ -451,7 +451,7 @@ function Time({ cc, cn, sec, date, dep, sem, day, time, isRunning, setIsRunning,
             await set(); // Call your set function
             await setTime(); // Call setTime
             await setAttendence(); // Call attendance update
-            await new Promise(resolve => setTimeout(resolve, 10000)); // Wait for 5 seconds
+            await new Promise(resolve => setTimeout(resolve, 5000)); // Wait for 5 seconds
 
             setIsRunning(false);
             setShowMain(false);
