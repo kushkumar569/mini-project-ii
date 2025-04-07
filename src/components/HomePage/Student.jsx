@@ -121,7 +121,7 @@ function Timer({ time, live, email, classes }) {
     const [difference, setDifference] = useState(0);
     const [timee, setTimee] = useState(120); // Default 5 min countdown
     const rol = useRecoilValue(roll);
-    // console.log(roll);
+    console.log("roll is",rol);
 
     // Calculate absolute time difference
     useEffect(() => {
@@ -259,7 +259,7 @@ function Main({ latTeacher, lonTeacher, live, email, classes, setView }) {
                 const dis = await vincenty(latTeacher, lonTeacher, latNow, lonNow);
                 setDistance(dis);
             
-                if (dis <= 10) {
+                if (dis <= 1000) {
                     setUnderRange(true);
                     setMessage("Inside Range- Present");
                 } else {
