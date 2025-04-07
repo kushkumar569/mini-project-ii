@@ -66,20 +66,27 @@ function TodayAttendance() {
     return (
         <div className="max-w-md mx-auto mt-10 p-6 bg-white rounded-2xl shadow-lg border border-gray-200">
             <h2 className="text-xl font-semibold mb-4 text-gray-800">Today's Attendance</h2>
-
+    
             {loading ? (
                 <p className="text-gray-500">Loading...</p>
             ) : todayAttnd ? (
-                <div className="bg-gray-50 p-4 rounded-lg text-gray-700 border border-gray-100">
-                    <pre className="whitespace-pre-wrap break-words bg-gray-100 p-4 rounded-lg text-sm font-mono text-gray-800 overflow-x-auto border border-gray-300 shadow-sm">
-                        {JSON.stringify(todayAttnd, null, 2)}
-                    </pre>
-
-                </div>
+                <>
+                    <div className="bg-gray-50 p-4 rounded-lg text-gray-700 border border-gray-100">
+                        <pre className="whitespace-pre-wrap break-words bg-gray-100 p-4 rounded-lg text-sm font-mono text-gray-800 overflow-x-auto border border-gray-300 shadow-sm">
+                            {JSON.stringify(todayAttnd, null, 2)}
+                        </pre>
+                    </div>
+    
+                    {Array.isArray(todayAttnd) && (
+                        <p className="mt-4 text-green-700 font-semibold text-center">
+                            ✅ Total Students Marked Present: {todayAttnd.length}
+                        </p>
+                    )}
+                </>
             ) : (
                 <p className="text-red-500">No attendance data found for today.</p>
             )}
-
+    
             <button
                 onClick={() => navigate("/view", { replace: true })}
                 className="mt-6 w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition duration-200 shadow-md"

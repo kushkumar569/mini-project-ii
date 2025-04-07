@@ -171,7 +171,7 @@ function View() {
                                         className={`px-4 py-2 rounded text-white ${selectedClass === classItem._id ? 'bg-green-500' : 'bg-blue-500 hover:bg-blue-700'}`}
                                         onClick={() => handleSelectCourse(classItem._id)}
                                     >
-                                        {selectedClass === classItem._id ? "Selected" : "Select"}
+                                        {selectedClass === classItem._id ? "Show" : "Show"}
                                     </button>
                                 </td>
                             </tr>
