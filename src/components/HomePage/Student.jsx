@@ -119,7 +119,7 @@ function Student() {
 function Timer({ time, live, email, classes }) {
     const navigate = useNavigate();
     const [difference, setDifference] = useState(0);
-    const [timee, setTimee] = useState(120); // Default 5 min countdown
+    const [timee, setTimee] = useState(122); // Default 5 min countdown
     const rol = useRecoilValue(roll);
     console.log("roll is",rol);
 
@@ -142,7 +142,7 @@ function Timer({ time, live, email, classes }) {
 
         const diff = getAbsoluteTimeDifferenceInSeconds(currentTime, time);
         setDifference(diff);
-        setTimee(120 - diff); // Start with (5 min - difference)
+        setTimee(122 - diff); // Start with (5 min - difference)
     }, [time]);
 
     function sleep(ms) {
@@ -188,25 +188,27 @@ function Timer({ time, live, email, classes }) {
     // Countdown timer
     useEffect(() => {
         let timer;
+    
         if (timee > 0) {
             timer = setInterval(() => {
                 setTimee(prevTime => {
                     if (prevTime <= 1) {
-                        new Promise(resolve => setTimeout(resolve, 2000));
-                        clearInterval(timer);
-                        (async () => {
-                            await new Promise(resolve => setTimeout(resolve, 2000)); // Delay for 2 seconds
+                        clearInterval(timer); // stop the countdown    
+                        // ⏳ Wait 2 seconds, then call setAttendence
+                        setTimeout(async () => {
                             showToast("Time Over");
-                            await setAttendence();
-                        })();
+                            await setAttendence(); // ✅ Call your function after delay
+                        }, 2000);   
                         return 0;
                     }
                     return prevTime - 1;
                 });
             }, 1000);
         }
-        return () => clearInterval(timer);
-    }, [timee]); // Restart effect if `timee` updates
+    
+        return () => clearInterval(timer); // cleanup
+    }, [timee]);
+    
 
     function formatTime(seconds) {
         const minutes = Math.floor(seconds / 60);
