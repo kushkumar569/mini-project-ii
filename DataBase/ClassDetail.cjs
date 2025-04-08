@@ -21,10 +21,18 @@ const Live = new Schema({
     time: String
 })
 
+const Location = new Schema({
+    vanue: {type: String, required: true, unique: true},
+    latitude: Number,
+    longitude: Number,
+})
+
 const ClassModel = mongoose.model('ClassDetail',ClassDetail);
 const LiveModel = mongoose.model('IsLIve',Live);
+const LocationModel = mongoose.model('Location',Location);
 
 module.exports = {
+    Location: LocationModel,
     ClassDetail: ClassModel,
     Live: LiveModel
 };

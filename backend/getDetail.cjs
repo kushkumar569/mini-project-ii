@@ -2,7 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const { Router } = require("express");
 const Get = Router();
-const { ClassDetail, Live } = require("../DataBase/ClassDetail.cjs")
+const { ClassDetail, Live,Location} = require("../DataBase/ClassDetail.cjs")
 const { detail, Attendence } = require("../DataBase/Attendence.cjs")
 const { subject } = require("../DataBase/subject.cjs")
 const {schedule} = require("../DataBase/TImeTable.cjs")
@@ -150,6 +150,23 @@ Get.post("/TodaySchedule", async (req, res) => {
         return res.status(500).json({ error: error.message });
     }
 });
+
+Get.post("/getVanue", async (req,res) =>{
+    console.log("from venue....");
+    
+    const {vanue} = req.body;
+    try{
+        const result = await Location.findOne({vanue:vanue})
+        if(!result){
+            return res.status(404).json({message: "Vanue Not Matched"})
+        }
+        console.log(result);
+        
+        return res.status(200).json(result);
+    }catch(err){
+        return res.status(500).json({error: error.message})
+    }
+})
 
 
 module.exports = {
