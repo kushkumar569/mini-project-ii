@@ -51,7 +51,7 @@ Class.post("/data", async (req, res) => {
                 const index = matchedSchedule.day.findIndex((d) => d === day);
                 console.log(index);
                 console.log(matchedSchedule.time[index]);
-                console.log((time));
+                console.log(time,"times");
                 console.log(matchedSchedule.time[index].startsWith(time));
                                 
                 
