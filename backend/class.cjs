@@ -11,24 +11,38 @@ app.use(express.json());
 Class.post("/data", async (req, res) => {
     function getCurrentDateTime() {
         const now = new Date();
-
-        const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-        const day = days[now.getDay()]; // Current day (Sunday, Monday, etc.)
-
-        // Time in 24-hour format (HH:MM:SS)
-        const hours = String(now.getHours()).padStart(2, '0');
-        const minutes = String(now.getMinutes()).padStart(2, '0');
-        const seconds = String(now.getSeconds()).padStart(2, '0');
-        const times = `${hours}:${minutes}:${seconds}`;
-
-        const date = String(now.getDate()).padStart(2, '0');
-        const month = String(now.getMonth() + 1).padStart(2, '0'); // Month is zero-based
-        const year = now.getFullYear();
-        const formattedDate = `${date}/${month}/${year}`;
-        console.log(hours);
+    
+        const formatter = new Intl.DateTimeFormat('en-IN', {
+            timeZone: 'Asia/Kolkata',
+            weekday: 'long',
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+            hour12: false,
+        });
+    
+        const parts = formatter.formatToParts(now);
         
-        return { day, time: hours, formattedDate, times};
+        let day = '', date = '', month = '', year = '', hours = '', minutes = '', seconds = '';
+        parts.forEach(part => {
+            if (part.type === 'weekday') day = part.value;
+            if (part.type === 'day') date = part.value;
+            if (part.type === 'month') month = part.value;
+            if (part.type === 'year') year = part.value;
+            if (part.type === 'hour') hours = part.value;
+            if (part.type === 'minute') minutes = part.value;
+            if (part.type === 'second') seconds = part.value;
+        });
+    
+        const formattedDate = `${date}/${month}/${year}`;
+        const times = `${hours}:${minutes}:${seconds}`;
+    
+        return { day, time: hours, formattedDate, times };
     }
+    
 
 
     const { day, time, formattedDate,times} = getCurrentDateTime(); //  Fixed variable names
