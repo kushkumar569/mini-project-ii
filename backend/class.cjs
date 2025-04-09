@@ -25,14 +25,15 @@ Class.post("/data", async (req, res) => {
         const month = String(now.getMonth() + 1).padStart(2, '0'); // Month is zero-based
         const year = now.getFullYear();
         const formattedDate = `${date}/${month}/${year}`;
-
+        console.log(hours);
+        
         return { day, time: hours, formattedDate, times};
     }
 
 
-    const { day, time, formattedDate,times} = getCurrentDateTime(); // ✅ Fixed variable names
+    const { day, time, formattedDate,times} = getCurrentDateTime(); //  Fixed variable names
     const { email } = req.body;
-    // console.log(email,"htyyyy");
+    console.log(time,"htyyyy");
     
     try {
         const users = await subject.find({ email }); // Get user subjects
