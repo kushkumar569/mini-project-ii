@@ -46,13 +46,13 @@ Class.post("/data", async (req, res) => {
             });
 
             if (matchedSchedule) {
-                // console.log(matchedSchedule)
+                console.log(matchedSchedule)
                 // Find the index where the day matches
                 const index = matchedSchedule.day.findIndex((d) => d === day);
-                // console.log(index);
-                // console.log(matchedSchedule.time[index]);
-                // console.log((time));
-                // console.log(matchedSchedule.time[index].startsWith(time));
+                console.log(index);
+                console.log(matchedSchedule.time[index]);
+                console.log((time));
+                console.log(matchedSchedule.time[index].startsWith(time));
                                 
                 
                 if (index !== -1 && matchedSchedule.time[index].startsWith(time)) {
@@ -67,7 +67,7 @@ Class.post("/data", async (req, res) => {
             }
         }
 
-        // console.log(matchedClasses);
+        console.log(matchedClasses);
         res.status(200).json({ matchedClasses:matchedClasses });
     } catch (error) {
         console.error("Error fetching schedule:", error);
