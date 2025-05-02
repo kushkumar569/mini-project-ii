@@ -11,43 +11,34 @@ app.use(express.json());
 Class.post("/data", async (req, res) => {
     function getCurrentDateTime() {
         const now = new Date();
-    
-        const formatter = new Intl.DateTimeFormat('en-IN', {
-            timeZone: 'Asia/Kolkata',
-            weekday: 'long',
-            year: 'numeric',
-            month: '2-digit',
-            day: '2-digit',
-            hour: '2-digit',
-            minute: '2-digit',
-            second: '2-digit',
-            hour12: false,
-        });
-    
-        const parts = formatter.formatToParts(now);
-        
-        let day = '', date = '', month = '', year = '', hours = '', minutes = '', seconds = '';
-        parts.forEach(part => {
-            if (part.type === 'weekday') day = part.value;
-            if (part.type === 'day') date = part.value;
-            if (part.type === 'month') month = part.value;
-            if (part.type === 'year') year = part.value;
-            if (part.type === 'hour') hours = part.value;
-            if (part.type === 'minute') minutes = part.value;
-            if (part.type === 'second') seconds = part.value;
-        });
-    
+      
+        // Get current UTC time in milliseconds
+        const utc = now.getTime() + (now.getTimezoneOffset() * 60000);
+      
+        // IST is UTC + 5 hours 30 minutes (19800000 ms)
+        const istTime = new Date(utc + (5.5 * 60 * 60 * 1000));
+      
+        const dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        const day = dayNames[istTime.getDay()];
+      
+        const date = String(istTime.getDate()).padStart(2, '0');
+        const month = String(istTime.getMonth() + 1).padStart(2, '0'); // Months are 0-indexed
+        const year = istTime.getFullYear();
+      
+        const hours = String(istTime.getHours()).padStart(2, '0');
+        const minutes = String(istTime.getMinutes()).padStart(2, '0');
+        const seconds = String(istTime.getSeconds()).padStart(2, '0');
+      
         const formattedDate = `${date}/${month}/${year}`;
         const times = `${hours}:${minutes}:${seconds}`;
-    
+      
         return { day, time: hours, formattedDate, times };
-    }
+      }
     
-
 
     const { day, time, formattedDate,times} = getCurrentDateTime(); //  Fixed variable names
     const { email } = req.body;
-    console.log(time,"htyyyy");
+    // console.log(time,"htyyyy");
     
     try {
         const users = await subject.find({ email }); // Get user subjects
@@ -64,10 +55,10 @@ Class.post("/data", async (req, res) => {
                 console.log(matchedSchedule)
                 // Find the index where the day matches
                 const index = matchedSchedule.day.findIndex((d) => d === day);
-                console.log(index);
-                console.log(matchedSchedule.time[index]);
-                console.log(time,"times");
-                console.log(matchedSchedule.time[index].startsWith(time));
+                // console.log(index);
+                // console.log(matchedSchedule.time[index]);
+                // console.log(time,"times");
+                // console.log(matchedSchedule.time[index].startsWith(time));
                                 
                 
                 if (index !== -1 && matchedSchedule.time[index].startsWith(time)) {
